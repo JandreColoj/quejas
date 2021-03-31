@@ -1,0 +1,125 @@
+.margin_top{
+   padding-top: 45px;
+}
+
+.btn-cancelar {
+   float: left;
+   width: 100%;
+   padding: 10px;
+   border-radius: 5px;
+   border: 1px solid #ddd !important;
+   background: #fff;
+   color: #777;
+   font-size: 17px;
+   font-weight: normal;
+}
+
+.btn-aceptar {
+   float: left;
+   width: 100%;
+   padding: 10px;
+   border-radius: 5px;
+   border: 1px solid #ddd !important;
+   background: var(--morado);
+   color: #ddd;
+   font-size: 17px;
+   font-weight: normal;
+}
+
+.container_formcuentas {
+   float: left;
+   width: 100%;
+
+      .input_file {
+         width: 0.1px;
+         height: 0.1px !important;
+         opacity: 0;
+         overflow: hidden;
+         position: absolute;
+         z-index: -1;
+      }
+
+      .label_filec {
+         border: 2px solid var(--morado);
+         background-color: var(--blanco);
+         color: var(--negro);
+         width: 100%;
+         max-width: 100%;
+         height: 35px;
+         font-size: 1.25rem;
+         font-weight: 700;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         cursor: pointer;
+         display: inline-block;
+         overflow: hidden;
+         padding: 0;
+         border-radius: 8px;
+         display: flex;
+         justify-content: flex-end;
+
+         span {
+            width: 100%;
+            color: var(--negro);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+         }
+
+         strong {
+            height: 100%;
+            color: var(--blanco);
+            background: var(--morado);
+            display: inline-block;
+            padding: 0.625rem 1.25rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            p {
+               margin: 0;
+               margin-left: 5px;
+            }
+         }
+      }
+}
+
+.content__datac {
+   max-height: 400px;
+   overflow-x: hidden;
+   overflow-y: auto;
+
+   &::-webkit-scrollbar {
+      width: 8px;
+      background-color: var(--gris);
+   }
+
+   &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: var(--morado);
+   }
+}
+
+.celdaInvalid{
+   background: rgba(254, 94, 61, 0.3) !important;
+}
+
+.btnbox_center {
+   float: left;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.btn_puntos{
+   float: left;
+   background: var(--morado);
+   border: none;
+   font-weight: 400 !important;
+   letter-spacing: 0.5px;
+   color: var(--blanco);
+   box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.08);
+   margin-top: 20px;
+   width: 100%;
+}

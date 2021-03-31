@@ -1,0 +1,131 @@
+.caja_voucher{
+   position: absolute;
+   width: 400px;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   margin: auto;
+   height: 620px;
+   background: #fff;
+   border-radius: 5px;
+   box-shadow: 0 0px 100px 0 rgba(0, 0, 0, 0.3);
+   z-index: 300;
+     .area_voucher{
+
+      width: 100%;
+       height: 550px;
+     overflow: auto;
+       &::-webkit-scrollbar {
+         width: 8px;
+         background-color: #ccc;
+       }
+
+       &::-webkit-scrollbar-thumb {
+         border-radius: 10px;
+         background: #FB4A38;
+       }
+
+
+     }
+
+
+ }
+
+ .impre_voucher{
+   float: left;
+   margin:15px 10px;
+   width: 100%;
+   max-width: 380px;
+   height: 650px;
+       font-family: 'Inconsolata', monospace !important;
+   h2{
+       float: left;
+       width: 100%;
+     margin:10px 0;
+     text-align: center;
+     font-size: 19px;
+     font-weight: bold;
+   }
+   h3{
+       float: left;
+       width: 100%;
+      margin:5px 0;
+     text-align: center;
+     font-size: 15px;
+   }
+
+    h4{
+       float: left;
+       width: 100%;
+      margin:5px 0;
+     text-align: left;
+     font-size: 15px;
+      line-height: 5px;
+   }
+
+     h5{
+       float: left;
+       width: 100%;
+      margin:5px 0;
+     text-align: center;
+     font-size: 15px;
+      line-height: 5px;
+   }
+
+   table{
+     float: left;
+     width: 100%;
+     margin-top: 20px;
+   }
+
+   td{
+     font-size: 14px !important;
+     padding-top:3px;
+     padding-bottom: 3px;
+   }
+   .tdiz{
+     text-align: right;
+   }
+
+   .trpa{
+     td{
+       padding-bottom: 15px;
+     }
+   }
+
+   .linediv{
+     float: left;
+     width: 100%;
+     margin-top: 25px;
+     margin-bottom: 25px;
+     border-bottom: 1px dashed #ccc;
+   }
+
+   .areafirma{
+     float: left;
+     width: 100%;
+     margin-top: 50px;
+     margin-bottom: 25px;
+     p{
+       float: left;
+       width: 50px;
+
+     }
+     span{
+       float: right;
+       width: 300px;
+       padding-top: 18px;
+       border-bottom: 1px solid #636b6f;
+     }
+     h3{
+       float: left;
+       width: 100%;
+       margin:0px;
+       font-size: 16px;
+       text-align: center;
+           line-height: 5px;
+     }
+   }
+
+ }

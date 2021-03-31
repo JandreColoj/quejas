@@ -1,0 +1,206 @@
+.head_vista {
+   float: left;
+   width: 100%;
+
+   .opciones_vista {
+      float: left;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+         @include to(m) {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            margin-bottom: 15px;
+         }
+
+      .titulo {
+         h1 {
+            color: var(--morado);
+            background: #fff;
+            font-size: 17px;
+            float: left;
+            text-align: left;
+            margin-bottom: 8px;
+            margin-top: 8px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 7px 14px 0 rgba(50, 50, 93, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
+            font-weight: 600;
+            letter-spacing: 0.01em;
+         }
+      }
+
+      .container_acciones {
+         float: left;
+
+         @include to(m) {
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 10px;
+         }
+
+            .btn_opcion {
+               @include btnPoductos(14px);
+               margin: 0 5px;
+            }
+
+            .btn_ayudaProd {
+               @include btnAyuda(14px);
+               @include hideTo(m);
+            }
+
+            .btn_ayudaTuto {
+               @include btnAyuda(14px);
+               @include hideTo(m);
+               margin: 0 5px;
+            }
+
+            .btn_ayuda__phonehead {
+               @include hideFrom(l);
+               @include btnAyudaPhone();
+            }
+      }
+   }
+}
+
+.head_vistaMontoVariable {
+   float: left;
+   width: 100%;
+
+   .opciones_vistaMontoVaiable {
+      float: left;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+         @include to(m) {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            margin-bottom: 15px;
+         }
+
+      .titulo {
+         h1 {
+            color: var(--morado);
+            background: #fff;
+            font-size: 17px;
+            float: left;
+            text-align: left;
+            margin-bottom: 8px;
+            margin-top: 8px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 7px 14px 0 rgba(50, 50, 93, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
+            font-weight: 600;
+            letter-spacing: 0.01em;
+         }
+      }
+
+      .container_acciones {
+         float: left;
+
+         @include to(m) {
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 10px;
+         }
+
+            .btn_opcion {
+               @include btnPoductos(14px);
+               margin: 0 5px;
+            }
+
+            .btn_ayudaProd {
+               @include btnAyuda(14px);
+               @include hideTo(m);
+            }
+
+            .btn_ayudaTuto {
+               @include btnAyuda(16px);
+               margin: 0 5px;
+            }
+
+            .btn_ayuda__phonehead {
+               @include hideFrom(l);
+               @include btnAyudaPhone();
+            }
+      }
+   }
+
+   .opciones_vistaEditarCategoria {
+      float: left;
+      width: 100%;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+
+         @include to(m) {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            margin-bottom: 15px;
+         }
+
+      .titulo {
+         h1 {
+            color: var(--morado);
+            background: #fff;
+            font-size: 17px;
+            float: left;
+            text-align: left;
+            margin-bottom: 8px;
+            margin-top: 8px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 7px 14px 0 rgba(50, 50, 93, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
+            font-weight: 600;
+            letter-spacing: 0.01em;
+         }
+      }
+
+      .container_acciones {
+         float: left;
+
+         @include to(m) {
+            float: left;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 10px;
+         }
+
+            .btn_opcion {
+               @include btnPoductos(14px);
+               margin: 0 5px;
+            }
+
+            .btn_ayudaProd {
+               @include btnAyuda(14px);
+               @include hideTo(m);
+            }
+
+            .btn_ayudaTuto {
+               @include btnAyuda(14px);
+               @include hideTo(m);
+               margin: 0 5px;
+            }
+
+            .btn_ayuda__phonehead {
+               @include hideFrom(l);
+               @include btnAyudaPhone();
+            }
+      }
+   }
+}

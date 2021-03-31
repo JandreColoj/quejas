@@ -1,0 +1,82 @@
+.spd{
+  padding-right: 0 !important;
+}
+
+.spi{
+  padding-left: 0 !important;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.no_border {
+   border: none !important;
+}
+
+.nya-bs-select {
+   float: left !important;
+   width: 100% !important;
+}
+
+
+.highcharts-credits {
+   display: none !important;
+}
+
+// .alert-danger{
+//    text-align: center;
+// }
+.select_menu{
+  text-decoration: none;
+  border-radius: 5px;
+  background: rgba(84, 118, 240, 0.3);
+  color: #5477f0;
+}
+
+._jw-tpk-blue-grey ._jw-tpk-header {
+   padding: 5px;
+   background: var(--morado);
+   color: var(--blanco);
+   font-size: var(--small_text);
+}
+
+._jw-tpk-body {
+   float: left;
+   width: 100%;
+
+   ._jw-tpk-hour,._jw-tpk-minute {
+      ol {
+         li {
+            a {
+               font-size: var(--sub_text);
+               color: var(--negro);
+
+               &:hover {
+                  background: var(--morado);
+                  color: var(--blanco);
+                  border: none;
+               }
+
+               &._jw-tpk-selected {
+                  background: var(--morado);
+                  color: var(--blanco);
+                  border: none;
+               }
+            }
+         }
+      }
+   }
+}
+
+.back_azul{
+   background: #d1dcff !important;
+}
+
+
+.back_morado{
+
+   background: #7200C6 !important;
+   color: #fff !important;
+
+}

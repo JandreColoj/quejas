@@ -1,0 +1,334 @@
+.container_enviosmodule {
+   float: left;
+   width: 100%;
+
+   .head_envio {
+      float: left;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      // justify-content: flex-start;
+      align-items: center;
+      padding: 1px 0px 1px 15px;
+
+      .icon_pagalob {
+         float: left;
+         width: 100px;
+         height: 100%;
+         margin-right: 5px;
+         // background: url('../img/registro/cinta-pagalo.svg') no-repeat center top;
+         background-size: 100%;
+      }
+
+      .icon_cargoexpreso {
+         float: left;
+         width: 100px;
+         height: 100%;
+         background: url('../img/icov/cargo_expreso.png') no-repeat center;
+         background-size: 85%;
+      }
+   }
+
+   .content_infoenvio {
+      float: left;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      h1 {
+         float: left;
+         width: 100%;
+         text-align: center;
+         font-size: 35px;
+         font-weight: $text_ligth;
+         color: var(--negro);
+         margin: 0;
+      }
+
+      h3 {
+         float: left;
+         width: 100%;
+         text-align: center;
+         font-size: var(--title);
+         font-weight: $text_regular;
+         color: var(--negro);
+         margin-top: 8px;
+         margin-bottom: 0;
+      }
+
+      .form_envio {
+         float: left;
+         width: 70%;
+         margin-top: 20px;
+
+         @include to(m) {
+            width: 95%;
+         }
+
+         // .input_envio {
+         //    padding: 8px !important;
+         //    background: var(--blanco);
+         //    border-radius: 5px !important;
+         //    margin-bottom: 15px;
+         // }
+
+         .btn_optionenvio{
+            @include btnAyuda(15px);
+            margin-top: 20px;
+            width: 60%;
+            color: var(--negro);
+            background: var(--blanco);
+            margin-bottom: 10px;
+
+            @include to(m) {
+               width: auto;
+            }
+
+            &.active {
+               color: var(--blanco);
+               background: var(--morado);
+            }
+
+            &:hover {
+               background: var(--blanco);
+            }
+         }
+
+         .btn_save_envio{
+            @include btnAyuda(15px);
+            margin-top: 20px;
+            width: 50%;
+            background: var(--morado);
+         }
+      }
+   }
+
+}
+
+.form_envio {
+   .form-control{
+      margin-top: 0 !important;
+      border-radius: 5px 0 0 5px !important;
+      background: $grisclaro;
+      border:none !important;
+      box-shadow: none !important;
+      transition: none !important;
+      height: 36px !important;
+      padding-left: 45px;
+      padding-top:7px;
+      padding-bottom: 5px;
+      padding-right: 10px;
+      font-size: 15px;
+   }
+
+   .form-control:focus{
+      border-color: none !important;
+      outline: 0;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0), 0 0 8px rgba(152, 203, 232, 0);
+      background: $grisclaro2;
+   }
+
+   .sinp{
+      padding-left: 15px !important;
+   }
+
+   .btn-busqueda{
+      float: left;
+      width: 100%;
+      height: 36px;
+      padding: 7px 10px 7px 10px;
+      border-radius:0 5px 5px 0;
+      border:none !important;
+      background: #ccc url('../img/icobuscar.svg') no-repeat center;
+      background-size: 15px;
+      color: $principal;
+      font-size: 17px;
+      font-weight: normal;
+
+      &:hover{
+          background: #fff url('../img/icobuscar.svg') no-repeat center;
+          background-size: 15px;
+      }
+    }
+}
+
+.nuTable{
+   margin:10px 0;
+   padding-top: 0px;
+   padding-bottom: 15px;
+   border-radius: 4px;
+
+
+   table {
+      border-collapse: separate;
+      border-spacing: 0px 10px;
+
+      .thico{
+         width: 50px !important;
+         height: 50px !important;
+      }
+
+      th{
+         font-weight: normal;
+         font-size: 15px;
+      }
+
+      tbody{
+         tr{
+            background: #fff;
+            border-radius: 5px !important;
+            box-shadow: 0 3px 7px 0 rgba(50, 50, 93, 0.05), 0 3px 7px 0 rgba(0, 0, 0, 0.07);
+
+               td{
+                  border: none !important;
+                  letter-spacing: 0.01em;
+                  font-size: 14px;
+               }
+
+               .tdac{
+                  border-radius: 5px 0 0 5px;
+               }
+
+               .tdacu{
+                  border-radius: 0 5px 5px 0;
+               }
+
+               &:hover{
+                  box-shadow: 0 7px 14px 0 rgba(50, 50, 93, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
+                  background: linear-gradient(to bottom, #ffffff 69%,#fafff7 100%);
+                  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fafff7',GradientType=0 );
+               }
+         }
+
+      }
+   }
+
+}
+
+.opciones{
+   float: left;
+   padding: 0;
+   margin:0;
+   list-style: none;
+
+   li{
+     float: left;
+     margin-right: 5px;
+   }
+
+   a{
+     float: left;
+     width: 35px;
+     height: 20px;
+     margin:0;
+     cursor: pointer;
+   }
+
+   @include to(m) {
+     width: 100%;
+
+      li {
+         width: 100%;
+      }
+
+      a {
+         width: 100%;
+      }
+   }
+
+   .ico_cancelenvio {
+      background: url('../img/ico__cancelado.svg') no-repeat 5px center;
+      background-size: 17px;
+   }
+
+   .ico_recoleccion {
+      background: url('../img/ico__encamino.svg') no-repeat 5px center;
+      background-size: 20px;
+   }
+
+   .ico_guia {
+      background: url('../img/ico__entegrado.svg') no-repeat 5px center;
+      background-size: 17px;
+   }
+}
+
+.btn_save_reco{
+   @include btnAyuda(18px);
+   margin-top: 20px;
+   width: 60%;
+}
+
+.datos_remitente{
+
+   h5{
+      font-size: 17px;
+      font-weight: 500;
+   }
+
+   p{
+      font-weight: 700;
+   }
+
+   border: solid 1px #c7c7c7;
+   border-radius: 5px;
+   padding: 10px;
+   margin: 10px;
+}
+
+.banner_envios {
+   float: left;
+   padding: 0 10px;
+   border-radius: 8px;
+   background: var(--morado);
+   margin-top: 15px;
+   height: 80px;
+
+   @include to(m) {
+      height: 200px;
+      margin-top: 5px;
+   }
+
+   .ico_envios {
+      float: left;
+      width: 60px;
+      height: 60px;
+      background: url('../img/icov/ico-location.svg') no-repeat center;
+      background-size: 60%;
+   }
+
+   h3 {
+      float: left;
+      width: auto !important;
+      margin: 0;
+      color: var(--blanco);
+      font-size: var(--title);
+      text-align: left !important;
+      font-weight: $text_medium;
+   }
+
+   p {
+      float: left;
+      margin: 0;
+      color: var(--blanco);
+      font-size: var(--text);
+   }
+
+   .btn__envio {
+      float: left;
+      min-width: 90px;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: var(--text);
+      color: var(--morado);
+      text-align: center;
+      cursor: pointer;
+      background: var(--blanco);
+   }
+}
+
+.center_text{
+   text-align: center;
+   padding-top: 15px;
+}
