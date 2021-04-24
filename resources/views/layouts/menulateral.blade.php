@@ -17,14 +17,12 @@
                <b style="color:black ">{{ isset($datos['nombre']) ? $datos['nombre'] : '' }}</b>
             </a>
 
-            @if (session('rol')=='admin')
 
-
-               <a  href="{{ url('/escritorio') }}"  class="menulist_item ico_escritorio {{ request()->is('escritorio') ? 'active_menu' : '' }}">
-                  <p>Inicio</p>
+               <a  href="{{ url('/home') }}"  class="menulist_item ico_escritorio {{ request()->is('home') ? 'active_menu' : '' }}">
+                  <p>Listado de quejas</p>
                </a>
 
-               <a href="{{ url('/providers') }}" class="menulist_item ico_clientes {{ request()->is('providers') ? 'active_menu' : '' }}">
+               {{-- <a href="{{ url('/providers') }}" class="menulist_item ico_clientes {{ request()->is('providers') ? 'active_menu' : '' }}">
                   <p>Proveedores</p>
                </a>
 
@@ -34,14 +32,14 @@
 
                <a href="{{ url('/pedidos') }}" class="menulist_item ico_orders {{ request()->is('pedidos') ? 'active_menu' : '' }}">
                   <p>Pedidos</p>
-               </a>
+               </a> --}}
 
                <a href="{{ url('/reportes') }}" class="menulist_item ico_reportes {{ request()->is('reportes') ? 'active_menu' : '' }}">
                   <p>Reportes</p>
                </a>
 
 
-               <a href="#" class="menulist_item ico_ajustes" ng-click="showAjustes()">
+               {{-- <a href="#" class="menulist_item ico_ajustes" ng-click="showAjustes()">
                   <p>Ajustes</p>
                </a>
 
@@ -52,22 +50,9 @@
                         <p>Generales</p>
                      </a>
                   </li>
-
-                  <!-- <li class="toggle_item">
-                     <a href="{{ url('/ajustesGenerales') }}" class="menulist_item ico_clientes" {{ request()->is('ajustesGenerales') ? 'active_menu' : '' }}>
-                        <p>General</p>
-                     </a>
-                  </li> -->
-               </ul>
-
-            @endif
+               </ul> --}}
 
 
-            @if (session('rol')=='operativo')
-               <a href="{{ url('/providers') }}" class="menulist_item ico_clientes {{ request()->is('providers') ? 'active_menu' : '' }}">
-                  <p>Proveedores</p>
-               </a>
-            @endif
 
          </div>
       </div>
@@ -75,8 +60,6 @@
       <div class="container_menubottom">
 
          <div class="container_menulist">
-
-            <div class="logo_powerby"></div>
 
             <a href="{{route('logout')}}" class="menulist_item ico_salir">
                <p>Salir</p>

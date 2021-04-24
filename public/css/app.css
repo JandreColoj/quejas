@@ -9866,7 +9866,7 @@ body {
 
 .btn-busfiltro {
   margin-top: 23px !important;
-  background: var(--morado) url(/images/ico-filtrob.svg?3bf1f7101be74d778dd48034a9326da1) no-repeat center;
+  background: #315CFD url(/images/ico-filtrob.svg?3bf1f7101be74d778dd48034a9326da1) no-repeat center;
   background-size: 18px;
   border: 1px solid var(--morado) !important;
   text-indent: -99999px;
@@ -10023,7 +10023,7 @@ fieldset[disabled] .btn {
   float: left;
   width: 100%;
   height: 112px;
-  background: url(/images/logo-qiubo.svg?ed151a7851a14eba5ab809cbb903869f) no-repeat center;
+  background: url(/images/ico_ico.svg?c211aa28bb6a0a8b2eda443272dc3b17) no-repeat center;
   background-size: 40%;
 }
 
@@ -10102,7 +10102,7 @@ fieldset[disabled] .btn {
 }
 
 .container_menutop .container_menulist .menulist_item.active_menu {
-  border-right: 5px solid var(--morado);
+  border-right: 5px solid #315CFD;
 }
 
 .container_menutop .container_menulist .ico_escritorio {
@@ -30290,8 +30290,8 @@ body {
 }
 
 .rad-txt-success {
-  background: #23ae89;
-  background: radial-gradient(circle, #23ae89 0%, #48b68f 100%);
+  background: #4152ee;
+  background: radial-gradient(circle, #4152ee 0%, #4695f0 100%);
 }
 
 .panel-heading {

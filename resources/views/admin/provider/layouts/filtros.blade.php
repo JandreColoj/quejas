@@ -1,73 +1,68 @@
-{{-- Filtros --}}
-<div class="caja_modal" ng-if="filtro_obj">
-   <div id="area_fID">
-      <div class="header_area">
-         <h1>Filtrar registros</h1>
-         <div class="areacerrar">
-            <a ng-click="cerrarFiltro()" class="icocerrar"></a>
-         </div>
-      </div>
-
-      <div  class="contenido_area coloblan">
-         <div class="col-sm-12">
-            <ul class="btnfil">
-               <li><a ng-click="activar_filtro('fecha')">Fecha de creación</a></li>
-               <li><a ng-click="activar_filtro('estado')">Estado</a></li>
-            </ul>
-         </div>
-
-         <div class="col-sm-12 mtop">
-            <form class="form-horizontal" name="frm" ng-submit="getRegistros(estado_docu)">
-
-               <div class="form-group fleft_phone" ng-if="por_fecha">
-                  <div class="col-sm-12 spd spi">
-                     <div class="col-sm-8 spi">
-                        <p for="">Por Fecha</p>
-                     </div>
-                     <div class="col-sm-4 spd">
-                        <a class="btn-canfil" ng-click="cancelar_filtro('fecha')">Quitar filtro</a>
-                     </div>
-                  </div>
-                  <div class="col-sm-6 col-xs-6  spi fleft_phone">
-                     <input type="date" class="form-control sinp" name="dia" ng-model="filtro.finicio" required>
-                  </div>
-                  <div class="col-sm-6 col-xs-6  spd fleft_phone">
-                     <input type="date" class="form-control sinp" name="dia" ng-model="filtro.ffin" required>
-                  </div>
-               </div>
-
-               <div class="form-group fleft_phone" ng-if="por_estado">
-                  <div class="col-sm-12 spd spi">
-                     <div class="col-sm-8 spi">
-                        <p for="">Por estado</p>
-                     </div>
-                     <div class="col-sm-4 spd">
-                        <a class="btn-canfil" ng-click="cancelar_filtro('estado')">Quitar filtro</a>
-                     </div>
+<div class="contepa" style="margin-left: 50px; width:92%; margin-top:50px" >
+   <div class="ed-container full spd spi ">
+      <div class="ed-item s-100 spi spd">
+         <div class="container_filtro">
+            <form ng-submit="getRegistros()">
+               <div class="row">
+                  <div class="col-sm-2">
+                     <label for="">Buscar por</label>
+                     <input class="form-control" type="text"  ng-model="filtro.busqueda" placeholder="Comercio">
                   </div>
 
-
-                  <div class="ed-item s-100 top_sections">
-
-                     <ol class="nya-bs-select custom_nyaselect" ng-model="filtro.activo" title="Categoría..." data-size="5" required>
-                        <li nya-bs-option="estado in estados" data-value="estado.value">
+                  <div class="col-sm-2 spi">
+                     <label for="estado">Region</label>
+                     <ol class="nya-bs-select" ng-model="filtro.region"  title="Selecciona..." ng-change="getDepartamentos()">
+                        <li nya-bs-option="region in regiones" data-value="region[0]['region']"  >
                            <a>
-                              @{{ estado.nombre }}
+                              @{{ region[0]['region'] }}
                               <span class="glyphicon glyphicon-ok check-mark"></span>
                            </a>
                         </li>
                      </ol>
                   </div>
 
-               </div>
+                  <div class="col-sm-2 spi">
+                     <label for="estado">Departamento</label>
 
+                     <ol class="nya-bs-select" ng-model="filtro.departamento"  ng-change="getMunicipio()" title="Selecciona...">
+                        <li nya-bs-option="depto in departamentos" data-value="depto.id"  >
+                           <a>
+                              @{{depto.nombre}}
+                              <span class="glyphicon glyphicon-ok check-mark"></span>
+                           </a>
+                        </li>
+                     </ol>
 
-               <div class="form-group fleft_phone" ng-if="por_fecha || por_estado">
-                  <div class="col-sm-6 col-xs-12  col-sm-offset-3  spf">
-                  <button type="submit" class="btn btn-primary  btn-login" ng-disabled="frm.$invalid"> Filtrar</button>
+                  </div>
+
+                  <div class="col-sm-2 spi">
+                     <label for="estado">Municipio</label>
+
+                     <ol class="nya-bs-select" ng-model="filtro.municipio"  title="Selecciona...">
+                        <li nya-bs-option="muni in municipios" data-value="muni.id"  >
+                           <a>
+                              @{{muni.nombre}}
+                              <span class="glyphicon glyphicon-ok check-mark"></span>
+                           </a>
+                        </li>
+                     </ol>
+
+                  </div>
+
+                  {{-- <div class="col-sm-2 spi">
+                     <label>Fecha inicio</label>
+                     <input class="form-control" type="date" placeholder="Fecha Inicio" ng-model="filtro.fechaInicio">
+                  </div>
+
+                  <div class="col-sm-2 spi">
+                     <label>Fecha final</label>
+                     <input class="form-control" type="date" placeholder="Fecha Final" ng-model="filtro.fechaFinal">
+                  </div> --}}
+
+                  <div class="col-sm-1 spi">
+                     <input class="btn-busfiltro" type="submit">
                   </div>
                </div>
-
             </form>
          </div>
       </div>

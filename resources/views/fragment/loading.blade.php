@@ -11,7 +11,7 @@
          <div class="tranacep topac"></div>
          <p>@{{mensaje}}</p>
          <div class="col-sm-12">
-            <a class="btn btn-primary  btn-login" ng-click="cerrar()">Cerrar</a>
+            <a class="btn btn-primary  btn-login" style="background: #0077BB" ng-click="cerrar()">Cerrar</a>
          </div>
       </div>
 
@@ -19,7 +19,7 @@
          <div class="tranerror topac"></div>
          <p>@{{mensaje}}</p>
          <div class="col-sm-12">
-            <a class="btn btn-primary btn-login" ng-click="cerrar()">Cerrar</a>
+            <a class="btn btn-primary btn-login"  style="background: #0077BB"ng-click="cerrar()">Cerrar</a>
          </div>
       </div>
 

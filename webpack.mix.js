@@ -30,5 +30,6 @@ mix.scripts([
         'resources/js/modulos/Helper.js',
         'resources/js/modulos/styleMap.js',
         'resources/js/modulos/GlobalChart.js',
+        'resources/js/Controllers/WelcomeCtrl.js',
 
     ],'public/js/Controller/Controllers.js');

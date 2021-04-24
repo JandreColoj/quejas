@@ -135,10 +135,10 @@ function ReportesCtrl($scope, $http, $location, $window ,Helper,Ventana_modal,$t
    }
 
 
-   $scope.graphicsCategory= function(data){
+   $scope.graphicsRegiones= function(data){
 
      // Build the chart
-     Highcharts.chart('container_category', {
+     Highcharts.chart('container_regiones', {
          chart: {
              plotBackgroundColor: null,
              plotBorderWidth: null,
@@ -175,10 +175,90 @@ function ReportesCtrl($scope, $http, $location, $window ,Helper,Ventana_modal,$t
 
    }
 
+   $scope.graphicsDepartamentos= function(data){
 
-   $scope.graphicsTopProviders = function(data){
+      // Build the chart
+      Highcharts.chart('container_departamentos', {
+          chart: {
+              plotBackgroundColor: null,
+              plotBorderWidth: null,
+              plotShadow: false,
+              type: 'pie'
+          },
+          title: {
+              text: ''
+          },
+          tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.0f}%</b>'
+          },
+          accessibility: {
+              point: {
+                  valueSuffix: '%'
+              }
+          },
+          plotOptions: {
+              pie: {
+                  allowPointSelect: true,
+                  cursor: 'pointer',
+                  dataLabels: {
+                      enabled: true,
+                      format: '<b>{point.name}</b>: {point.percentage:.0f} %',
+                      connectorColor: 'silver'
+                  }
+              }
+          },
+          series: [{
+              name: ' ',
+              data: data
+          }]
+      });
 
-      Highcharts.chart('container_top_providers', {
+   }
+
+   $scope.graphicsMunicipios = function(data){
+
+      // Build the chart
+      Highcharts.chart('container_municipios', {
+          chart: {
+              plotBackgroundColor: null,
+              plotBorderWidth: null,
+              plotShadow: false,
+              type: 'pie'
+          },
+          title: {
+              text: ''
+          },
+          tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.0f}%</b>'
+          },
+          accessibility: {
+              point: {
+                  valueSuffix: '%'
+              }
+          },
+          plotOptions: {
+              pie: {
+                  allowPointSelect: true,
+                  cursor: 'pointer',
+                  dataLabels: {
+                      enabled: true,
+                      format: '<b>{point.name}</b>: {point.percentage:.0f} %',
+                      connectorColor: 'silver'
+                  }
+              }
+          },
+          series: [{
+              name: ' ',
+              data: data
+          }]
+      });
+
+   }
+
+   $scope.graphicsTopComercios = function(data){
+
+      console.log(data);
+      Highcharts.chart('container_top_comercios', {
          chart: {
              type: 'bar'
          },
@@ -189,7 +269,7 @@ function ReportesCtrl($scope, $http, $location, $window ,Helper,Ventana_modal,$t
              text: ''
          },
          xAxis: {
-             categories: data.providers,
+             categories: data.comercios,
              allowDecimals: true,
              title: {
                  text: null
@@ -198,7 +278,7 @@ function ReportesCtrl($scope, $http, $location, $window ,Helper,Ventana_modal,$t
          yAxis: {
              min: 0,
              title: {
-                 text: 'Valor en pesos MXN',
+                 text: 'Valor',
                  align: 'high'
              },
              labels: {
@@ -235,78 +315,64 @@ function ReportesCtrl($scope, $http, $location, $window ,Helper,Ventana_modal,$t
          },
          series: [{
             name: '',
-            data: data.orders
+            data: data.quejas
          }]
       });
    }
 
 
-   $scope.graphicsTopClients = function(data){
+   $scope.graphicsOrderRange = function(data){
 
-      Highcharts.chart('container_top_clients', {
+      Highcharts.chart('container_quejasRangeDate', {
          chart: {
-             type: 'bar'
+            type: 'areaspline',
          },
          title: {
-             text: ''
-         },
-         subtitle: {
-             text: ''
+            text: ''
          },
          xAxis: {
             allowDecimals: false,
-            categories: data.clients,
-            title: {
-               text: null
-            }
+            categories:  data.name
          },
          yAxis: {
-             min: 0,
-             title: {
-                 text: 'Valor en pesos MXN',
-                 align: 'high'
-             },
-             labels: {
-                 overflow: 'justify'
-             }
+            title: {
+               text: '( )'
+            }
          },
          tooltip: {
-            pointFormat: '<span>Total '+$scope.dataReport.currency +'</span>: <b>{point.y:.2f}</b><br/>',
+            pointFormat: '<span>Total </span>: <b>{point.y:.2f}</b><br/>',
             shared: true
          },
-         tooltip: {
-             valueSuffix: ''
-         },
          plotOptions: {
-            series: {
-               colorByPoint: false
+            areaspline: {
+               lineColor: '#9c4dcc'
             },
-             bar: {
-                 dataLabels: {
-                     enabled: false
-                 }
-             }
-         },
-         legend: {
-             layout: 'vertical',
-             align: 'right',
-             verticalAlign: 'top',
-             x: -40,
-             y: 80,
-             floating: true,
-             borderWidth: 1,
-             backgroundColor:
-                 Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
-             shadow: true
-         },
-         credits: {
-             enabled: false
+            line: {
+               dataLabels: {
+                  enabled: true
+               },
+               enableMouseTracking: false
+            }
          },
          series: [{
-            name: '',
-            data: data.orders
-         }]
+               color: {
+                  linearGradient: {
+                     x1: 1,
+                     x2: 0,
+                     y1: 0,
+                     y2: 1
+                  },
+                  stops: [
+                     [0, '#9162e4'],
+                     [1, '#fff1ff']
+                  ]
+               },
+               name: 'Total',
+               data: data.cantidad
+            }
+         ],
       });
+
    }
 
 
@@ -373,144 +439,21 @@ function ReportesCtrl($scope, $http, $location, $window ,Helper,Ventana_modal,$t
    }
 
 
-   $scope.graphicsHoursOrder = function(data){
-
-      Highcharts.chart('container_hoursOrder', {
-         chart: {
-            type: 'areaspline',
-         },
-         title: {
-            text: ''
-         },
-         xAxis: {
-            allowDecimals: false,
-            categories:  data.name
-         },
-         yAxis: {
-            title: {
-               text: '(MXN)'
-            }
-         },
-         tooltip: {
-            pointFormat: '<span>Total '+$scope.dataReport.currency +'</span>: <b>{point.y:.2f}</b><br/>',
-            shared: true
-         },
-         plotOptions: {
-            areaspline: {
-               lineColor: '#ff5c8d'
-            },
-            line: {
-               dataLabels: {
-               enabled: true
-               },
-               enableMouseTracking: false
-            }
-         },
-         series: [{
-
-               color: {
-                  linearGradient: {
-                     x1: 0,
-                     x2: 0,
-                     y1: 0,
-                     y2: 1
-                  },
-                  stops: [
-                     [0, '#ff6090'],
-                     [1, '#ffc1e3']
-                  ]
-               },
-
-               name: 'Total',
-               data: data.total
-            }
-         ],
-      });
-
-   }
-
-
-   $scope.graphicsOrderRange = function(data){
-
-      Highcharts.chart('container_orderRangeDate', {
-         chart: {
-            type: 'areaspline',
-         },
-         title: {
-            text: ''
-         },
-         xAxis: {
-            allowDecimals: false,
-            categories:  data.name
-         },
-         yAxis: {
-            title: {
-               text: '(MXN)'
-            }
-         },
-         tooltip: {
-            pointFormat: '<span>Total '+$scope.dataReport.currency +'</span>: <b>{point.y:.2f}</b><br/>',
-            shared: true
-         },
-         plotOptions: {
-            areaspline: {
-               lineColor: '#9c4dcc'
-            },
-            line: {
-               dataLabels: {
-                  enabled: true
-               },
-               enableMouseTracking: false
-            }
-         },
-         series: [{
-               color: {
-                  linearGradient: {
-                     x1: 1,
-                     x2: 0,
-                     y1: 0,
-                     y2: 1
-                  },
-                  stops: [
-                     [0, '#9162e4'],
-                     [1, '#fff1ff']
-                  ]
-               },
-               name: 'Total',
-               data: data.total
-            }
-         ],
-      });
-
-   }
-
 
    $scope.generateReportGeneral = function(){
 
-      Ventana_modal.loader('Generando . . . ');
+      // Ventana_modal.loader('Generando . . . ');
 
-      $http.post('api/reports/generateReportGeneral', $scope.filtro).success(function(response){
+      $http.post('api/generateReportGeneral', $scope.filtro).success(function(response){
 
-         Ventana_modal.loader();
-
-         if(response.codigo==200){
+         // Ventana_modal.loader();
 
             $scope.dataReport = response;
-            $scope.graphicsTopProviders($scope.dataReport.top_proviers);
-            $scope.graphicsTopClients($scope.dataReport.top_clients);
-            $scope.graphicsCategory($scope.dataReport.top_category.data);
-            $scope.graphicsOrders($scope.dataReport.status_orders.data);
-            $scope.graphicsDaysOrder($scope.dataReport.orders_day_week);
-            $scope.graphicsHoursOrder($scope.dataReport.orders_hours);
-            $scope.graphicsOrderRange($scope.dataReport.orders_day);
-
-            if($scope.dataReport.status_orders.data.length>0){
-               $scope.mapCalorOrders($scope.dataReport.coordenada_orders.data);
-            }
-
-         }else{
-            Ventana_modal.modalResponse(response.message_error, 'error');
-         }
+            $scope.graphicsTopComercios($scope.dataReport.top_comercios);
+            $scope.graphicsRegiones($scope.dataReport.regiones);
+            $scope.graphicsDepartamentos($scope.dataReport.departamentos);
+            $scope.graphicsMunicipios($scope.dataReport.municipios);
+            $scope.graphicsOrderRange($scope.dataReport.quejas_day);
 
       });
 
@@ -531,157 +474,32 @@ function ReportesCtrl($scope, $http, $location, $window ,Helper,Ventana_modal,$t
    }
 
 
-   $scope.getProviders = function(){
-
-      $http.get('api/reports/getProviders').success(function(response){
-
-         if(response.codigo==200){
-            $scope.providers = response.provides;
-            $scope.clients   = response.clients;
-            $scope.filtro.id_provider = 0;
-            $scope.filtro.id_client   = 0;
-         }else{
-            Ventana_modal.modalResponse(response.message_error, 'error');
-         }
-
+   $scope.getRegion = function(){
+      $http.get('public/getRegion').success(function(response){
+         $scope.regiones = response.datos;
       });
+   };
 
-   }
+   $scope.getDepartamentos = function(){
+      $http.get('public/getDepartamentos/'+$scope.filtro.region).success(function(response){
+         $scope.departamentos = response.datos;
+      });
+   };
 
-   // LIBRARY FileSaver
-   $scope.exportExcel = function (tipo) {
-
-      Ventana_modal.loader('Descargando reportes. . .');
-
-      $scope.filtro.tipo = tipo;
-
-      $http({
-         method: 'POST',
-         url: 'api/reports/exportExcel',
-         data: $scope.filtro,
-         responseType: 'arraybuffer',
-      }).success(function (data) {
-
-         Ventana_modal.loader();
-
-         var blob = new Blob([data], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
-         saveAs(blob, "report.xls");
-
-      }).error(function (data, status, headers, config) {
-         Ventana_modal.loader();
-
-         $timeout(function () {
-            Ventana_modal.modalResponse('Ocurrio un error al descargar el reporte', 'error');
-         }, 2000);
+   $scope.getMunicipio = function(){
+      $http.get('public/getMunicipio/'+$scope.filtro.departamento).success(function(response){
+         $scope.municipios = response.datos;
       });
    };
 
 
-   /********************************  mapa de calor ********************************/
-      $scope.mapCalorOrders = function(data) {
-
-         map = new google.maps.Map(document.getElementById('map_calor'), {
-            zoom: 7,
-            center: {lat: data[0].latitud, lng: data[0].longitud},
-            mapTypeId: google.maps.MapTypeId.MAPA
-         });
-
-         var styles = styleMap.style();
-         map.setOptions({ styles: styles['silver'] });
-
-
-         var points =[];
-
-         for(let index = 0; index < data.length; index++){
-            points.push(new google.maps.LatLng(data[index].latitud, data[index].longitud))
-         }
-
-         heatmap = new google.maps.visualization.HeatmapLayer({
-            data: points, //data: getPoints()
-            map: map
-         });
-
-         changeGradient();
-         changeRadius();
-         changeOpacity();
-      }
-
-      function toggleHeatmap() {
-         heatmap.setMap(heatmap.getMap() ? null : map);
-      }
-
-      function changeGradient() {
-         var gradient = [
-            'rgba(0, 255, 255, 0)',
-            'rgba(0, 255, 255, 1)',
-            'rgba(0, 191, 255, 1)',
-            'rgba(0, 127, 255, 1)',
-            'rgba(0, 63, 255, 1)',
-            'rgba(0, 0, 255, 1)',
-            'rgba(0, 0, 223, 1)',
-            'rgba(0, 0, 191, 1)',
-            'rgba(0, 0, 159, 1)',
-            'rgba(0, 0, 127, 1)',
-            'rgba(63, 0, 91, 1)',
-            'rgba(127, 0, 63, 1)',
-            'rgba(191, 0, 31, 1)',
-            'rgba(255, 0, 0, 1)'
-         ]
-         heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
-      }
-
-      function changeRadius() {
-         heatmap.set('radius', heatmap.get('radius') ? null : 20);
-      }
-
-      function changeOpacity() {
-         heatmap.set('opacity', heatmap.get('opacity') ? null : 0.5);
-      }
-
-      // Heatmap data: 500 Points
-      function getPoints() {
-
-         var points =[];
-
-         for(let index = 0; index <= 1000; index++){
-
-            var long = (14.6229+(Math.sqrt(Math.random())));
-            var lat = (-90.5315+(Math.sqrt(Math.random())-1));
-
-            points.push(new google.maps.LatLng(long, lat))
-            console.log(long);
-         }
-         return points;
-      }
-   /********************************  mapa de calor ********************************/
-
    $scope.inicialize = function(){
 
-      $scope.estados = [
-         { nombre : 'Todos',       codigo : 0},
-         { nombre : 'Nuevo',       codigo : 1},
-         { nombre : 'Bodega',      codigo : 2},
-         { nombre : 'Facturación', codigo : 3},
-         { nombre : 'Ruta',        codigo : 4},
-         { nombre : 'Entregado',   codigo : 5},
-         { nombre : 'Incompleto',  codigo : 6},
-         { nombre : 'Cancelado',   codigo : 7},
-         { nombre : 'Devolucion',  codigo : 8},
-      ];
-
       $scope.filtro = {};
-      $scope.filtro.estado = 0;
-      $scope.filtro.id_provider = 0;
-      $scope.filtro.id_client   = 0;
+      $scope.queja = {};
 
-      var date = new Date();
-      date.setDate(date.getDate() - 30);
-      $scope.filtro.fecha_inicio = date;
-      $scope.filtro.fecha_fin    = new Date();
-
-      $scope.getProviders();
-      $scope.getResumen();
       $scope.generateReportGeneral();
+      $scope.getRegion();
    }
 
    $scope.inicialize();
@@ -1510,23 +1328,6 @@ function ProviderCtrl($scope, $http, Helper,Ventana_modal, $timeout){
 
    $scope.icono_image = "https://jupi-bot.s3.amazonaws.com/Dashboard/uploadimagecamara.svg";
 
-   $scope.tipomoneda = [
-      {id:'1',nombre:'Guatemala GTQ',value:'GTQ'},
-      {id:'2',nombre:'Dolar USD',value:'USD'},
-   ];
-
-   $scope.estados = [
-      {nombre:'Activos', value: 1 },
-      {nombre:'Desactivados', value: 0 },
-   ];
-
-   $scope.estados_promo = [
-      {'nombre' : 'Activo' , 'codigo' : 1},
-      {'nombre' : 'Inactivo' , 'codigo' : 0},
-      {'nombre' : 'Finalizado' , 'codigo' : 2},
-      {'nombre' : 'Futuras' , 'codigo' : 3},
-   ];
-
    $scope.meses = [
       {value:1,  nombre:'Enero'},
       {value:2,  nombre:'Febrero',},
@@ -1542,79 +1343,23 @@ function ProviderCtrl($scope, $http, Helper,Ventana_modal, $timeout){
       {value:12, nombre:'Diciembre',},
    ];
 
-   $scope.anio_inicial = 2020; //INICIO DE OPERACIONES
-   $scope.anio_actual  = new Date().getFullYear();
-   $scope.years = [];
-
-   for(let a = 0; a < 5; a++){
-      if(($scope.anio_actual-a) >= $scope.anio_inicial){
-         $scope.years.push($scope.anio_actual-a);
-      }
-   }
-
-   $scope.nueva_ventana = function(tipo = false, data = false){
-
-      $scope.errors = [];
-
-      switch (tipo) {
-
-         case 'MODAL_COMISION':
-            $scope.nueva_ventana();
-            $scope.modal_comision = true;
-            $scope.provider = data;
-            $scope.detailComision();
-            $scope.getTiposComision();
-            break;
-
-         case 'MODAL_CONFIR_DELETE':
-            $scope.nueva_ventana();
-            $scope.provider = data;
-            $("#modal_confirm_deshabilitar").modal()
-            break;
-
-         case 'MODAL_CONFIRM_HABILITAR':
-            $scope.nueva_ventana();
-            $scope.provider = data;
-            $("#modal_confirm_habilitar").modal()
-            break;
-
-         case 'MODAL_CONFIRM_HABILITAR':
-            $scope.nueva_ventana();
-            $scope.provider = data;
-            $("#modal_confirm_habilitar").modal()
-            break;
-
-         case 'MODAL_EDITAR_PRODUCTO':
-            $scope.nueva_ventana();
-            $scope.producto = data;
-            $("#modal_editar_producto").modal()
-            break;
-
-         // CIERRA MODALS
-         case false:
-            $scope.modal_comision = false;
-         default:
-            break;
-      }
-
-   }
-
-   $scope.getRegistros = function(estado){
-
-      $scope.estado_docu = estado;
-      $scope.filtro.estado = estado;
+   $scope.getRegistros = function(){
 
       Ventana_modal.loader('Cargando . . .');
 
-      $http.post('api/registros/getProviders', $scope.filtro).success(function(registros){
+      $http.post('api/getQuejas',$scope.filtro).success(function(response){
 
-         $scope.filtro_obj     = false;
-         $scope.registros      = registros.datos;
-         $scope.TotalEmpresas  = registros.estado_registro;
+         $scope.registros = response.datos;
 
          Ventana_modal.loader();
       });
 
+   }
+
+   $scope.verQUeja = function(registro){
+
+      $("#modal_detalle").modal()
+      $scope.registro = registro;
    }
 
    $scope.cerrar_ID= function(){
@@ -1622,272 +1367,26 @@ function ProviderCtrl($scope, $http, Helper,Ventana_modal, $timeout){
       $scope.areaEmpresa = 1;
    }
 
-   $scope.detailProvider = function(id_provider){
 
-      Ventana_modal.loader('Cargando . . .');
 
-      $scope.mas_obj = true;
-
-      $http.get('api/registros/getProvider/'+id_provider).success(function(response){
-         $scope.provider = response.datos;
-         Ventana_modal.loader();
-      });
-
-   };
-
-   $scope.getTiposComision = function(){
-
-      Ventana_modal.loader('Cargando . . .');
-
-      $scope.datos.id_provider = $scope.provider.id;
-
-      $http.post('api/registros/getTipoComision', $scope.datos).success(function(response){
-
-         Ventana_modal.loader();
-
-         $scope.tipos_comision = response.tipos;
-
-         if (response.tipoComision!=null) {
-            $scope.provider.tipoComision = response.tipoComision;
-            $scope.datos.tipo_comision =  $scope.provider.tipoComision.id;
-         }
-
+   $scope.getRegion = function(){
+      $http.get('public/getRegion').success(function(response){
+         $scope.regiones = response.datos;
       });
    };
 
-   $scope.getProducts = function(id_provider){
-
-      Ventana_modal.loader('Cargando . . .');
-
-      $http.get('api/registros/getProducts/'+id_provider).success(function(response){
-
-         Ventana_modal.loader();
-         if(response.codigo==200){
-            $scope.productos = response.datos;
-         }
-
+   $scope.getDepartamentos = function(){
+      $http.get('public/getDepartamentos/'+$scope.filtro.region).success(function(response){
+         $scope.departamentos = response.datos;
       });
-
    };
 
-   $scope.getPromotions = function(id_provider){
-
-      Ventana_modal.loader('Cargando . . .');
-
-      $http.post('api/registros/getPromotions/'+id_provider, $scope.filtro).success(function(response){
-
-         Ventana_modal.loader();
-         if(response.codigo==200){
-            $scope.promotions = response.data;
-         }else{
-            Ventana_modal.modalResponse(response.error_message, 'error');
-         }
-
+   $scope.getMunicipio = function(){
+      $http.get('public/getMunicipio/'+$scope.filtro.departamento).success(function(response){
+         $scope.municipios = response.datos;
       });
-
    };
 
-   $scope.setTipoComision = function(){
-
-      Ventana_modal.loader('Actualizando . . .');
-
-      $scope.datos.id_provider = $scope.provider.id;
-
-      $http.post('api/registros/setTipoComision', $scope.datos).success(function(response){
-
-         Ventana_modal.loader();
-
-         if (response.codigo==200) {
-            $scope.tiposComision = response.tipos;
-            $scope.provider.tipoComision = response.tipoComision;
-            Ventana_modal.modalResponse('Actualizado correctamente', 'success');
-         }else{
-            Ventana_modal.modalResponse(response.error_message, 'error');
-         }
-
-      });
-
-   };
-
-   $scope.detailComision = function(){
-
-      Ventana_modal.loader('Calculando . . .');
-
-      $scope.datos.id_provider = $scope.provider.id;
-
-      $http.post('api/registros/detailComision', $scope.datos).success(function(response){
-
-         Ventana_modal.loader();
-         $scope.responseComision = [];
-
-         if (response.codigo==200) {
-            $scope.responseComision = response.result;
-         }else{
-            Ventana_modal.modalResponse(response.error_message, 'error');
-         }
-
-      });
-
-   };
-
-   $scope.setCommissionProduct = function(){
-
-      $http.post('api/registros/setCommissionProduct/',$scope.producto).success(function(response){
-
-         if(response.codigo==200){
-            $('#modal_editar_producto').modal('hide');
-         }else{
-            Ventana_modal.modalResponse(response.message_error, 'error');
-         }
-
-      });
-   }
-
-   $scope.verificarCheckDocumentos = function (documentos) {
-
-      $scope.documentos  = documentos;
-      $scope.check_dpi_delante = false;
-      $scope.check_rtu         = false;
-      $scope.check_cheque      = false;
-
-      if($scope.documentos.documento_identificacion){
-
-         var check = $scope.existeRegistro.check.find(function(element) {
-            return (element.documento == 'documento_identificacion' && element.check == 1);
-         });
-
-         if (check==undefined) {
-            $scope.check_dpi_delante = false;
-         }else{
-            $scope.check_dpi_delante = true;
-         }
-      }
-
-   }
-
-
-   $scope.areaEmpresa = 1;
-   $scope.habiEmpresa= function(area){
-
-      $scope.areaEmpresa = area;
-
-      if($scope.areaEmpresa==3) {
-         $scope.areaMap();
-      }else if($scope.areaEmpresa==4){
-         $scope.getTiposComision();
-      }else if($scope.areaEmpresa==5){
-         $scope.getProducts($scope.provider.id);
-      }else if($scope.areaEmpresa==6){
-         $scope.getPromotions($scope.provider.id);
-      }
-   }
-
-   $scope.nuevoBanco = function(registro){
-
-      $scope.cargarnBanco = true;
-      $scope.miregistro = registro;
-
-      $scope.cancelarBanco= function(){
-         $scope.cargarnBanco=false;
-      }
-      $scope.elbanco={};
-
-      $scope.bancoEmpresa = function(empresa){
-
-         Ventana_modal.loader('Registrando . . .');
-
-         var databan = {
-            banco:$scope.elbanco.banco,
-            pais:$scope.elbanco.pais,
-            cuenta:$scope.elbanco.cuenta,
-            numero:$scope.elbanco.numero,
-            tipo_cuenta:$scope.elbanco.tipo,
-            moneda:$scope.elbanco.moneda,
-            id_empresa:empresa,
-         };
-
-         $http.post('api/registros/newbank', databan).success(function (response){
-
-            Ventana_modal.loader();
-            $scope.existeRegistro.banco = response.banco;
-            $scope.cargarnBanco = false;
-
-         });
-
-      }
-
-   }
-
-   $scope.existeBanco={};
-   $scope.editarBanco= function(banco){
-
-      $scope.cargareBanco = true;
-      $scope.existeBanco  = banco;
-
-      $scope.cancelarEBanco= function(){
-         $scope.cargareBanco=false;
-      }
-
-      $scope.bancoedEmpresa=function(empresa){
-
-         Ventana_modal.loader('Actualizando . . .');
-
-
-         var databan = {
-            banco:$scope.existeBanco.banco,
-            pais:$scope.existeBanco.pais,
-            cuenta:$scope.existeBanco.cuenta,
-            numero:$scope.existeBanco.numero,
-            tipo_cuenta:$scope.existeBanco.tipo_cuenta,
-            moneda:$scope.existeBanco.moneda,
-            id_empresa:empresa,
-         };
-
-         $http.put('api/registros/updateBank/'+$scope.existeBanco.id, databan).success(function (data, status, headers) {
-
-            Ventana_modal.loader();
-
-            $scope.cargareBanco=false;
-            $scope.existeRegistro.banco = response.banco;
-         });
-
-
-      }
-
-   }
-
-   $scope.editarEmpresa = function(existeRegistro){
-
-      $scope.vereditEmpresa = true;
-      $scope.laempresa = existeRegistro;
-
-      $scope.canceleditEmpresa= function(){
-         $scope.vereditEmpresa = false;
-         $scope.laempresa = {};
-      }
-
-      $scope.guardarEmpresa = function(){
-
-         var dataempresa = {
-            nombre_empresa:     $scope.laempresa.nombre,
-            nit:                $scope.laempresa.nit,
-            tipo_empresa:       $scope.laempresa.id_tipo,
-            direccion:          $scope.laempresa.ubicacion,
-            direccion_fiscal:   $scope.laempresa.direccionValida,
-            categoria_empresa:  $scope.laempresa.id_categoria,
-            plataforma_empresa: $scope.laempresa.id_plataforma,
-            nombre_fiscal:      $scope.laempresa.nombreValido,
-            id:                 $scope.laempresa.id
-         };
-
-         $http.put('api/registros/update',dataempresa).success(function (){
-
-            $scope.getRegistros($scope.estado_docu);
-            $scope.vereditEmpresa = false;
-         });
-      }
-
-   }
 
    $scope.abrirFiltro= function(){
       $scope.filtro_obj=true;
@@ -1917,310 +1416,6 @@ function ProviderCtrl($scope, $http, Helper,Ventana_modal, $timeout){
       }
    }
 
-   $scope.areaMap = function(){
-
-      Ventana_modal.loader('Cargando . . .');
-
-      $scope.array = [
-         [19.4069,-99.10779],//principal
-         [19.33986,-99.10504],
-         [19.46176,-99.0642],
-         [19.47438,-99.1644],
-         [19.37134,-99.22055],
-      ];
-
-      if($scope.provider.perimetro.length>3){
-
-         $scope.array = [];
-
-         $scope.provider.perimetro.forEach(element => {
-            $coordenada = element.coordenadas.split(',');
-            $scope.array.push([parseFloat($coordenada[0]),parseFloat($coordenada[1])]);
-         });
-
-      }else if($scope.provider.adicional_empresa.colonia!='' && $scope.provider.adicional_empresa.municipio!='' && $scope.provider.adicional_empresa.estado_!=''){
-
-         var myAddressQuery = $scope.provider.adicional_empresa.estado_+', '+$scope.provider.adicional_empresa.municipio+', '+$scope.provider.adicional_empresa.colonia;
-         console.log(myAddressQuery);
-
-         var geocoder = new google.maps.Geocoder();
-
-         geocoder.geocode({'address': myAddressQuery}, function(results, status){
-
-            if(status === 'OK'){
-
-               let latitud = results[0].geometry.location.lat();
-               let longitud = results[0].geometry.location.lng();
-
-               $scope.array = [
-                  [latitud,longitud],//principal
-                  [(latitud + (0.07148)), (longitud + (0.03964))],
-                  [(latitud + (0.07789)), (longitud + (-0.03588))],
-                  [(latitud + (-0.00512)), (longitud + (-0.09902))],
-                  [(latitud + (-0.08093)), (longitud + (-0.03035))],
-                  [(latitud + (-0.06498)), (longitud + (0.04611))],
-               ];
-            }
-
-         });
-
-      }
-
-      $timeout(function () {
-         $scope.initialize($scope.array);
-         Ventana_modal.loader();
-      }, 4000);
-
-   }
-
-   var bermudaTriangle;
-   $scope.initialize = function(coordenadas) {
-
-      var myLatLng = new google.maps.LatLng(coordenadas[0][0],coordenadas[0][1]);
-      var mapOptions = {
-         zoom: 12,
-         center: myLatLng,
-         mapTypeId: google.maps.MapTypeId.RoadMap
-      };
-
-      var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-      var triangleCoords = [];
-      coordenadas.forEach(element => {
-         triangleCoords.push(new google.maps.LatLng(element[0],element[1]));
-      });
-
-      // Construct the polygon
-      bermudaTriangle = new google.maps.Polygon({
-         paths: triangleCoords,
-         draggable: true,
-         editable: true,
-         strokeColor: '#7200c6',
-         strokeOpacity: 0.8,
-         strokeWeight: 2,
-         fillColor: '#7200c6',
-         fillOpacity: 0.35
-      });
-
-      var result = bermudaTriangle.setMap(map);
-
-      // google.maps.event.addListener(bermudaTriangle, "dragend", getPolygonCoords);
-      google.maps.event.addListener(bermudaTriangle.getPath(), "insert_at", getPolygonCoords);
-      google.maps.event.addListener(bermudaTriangle.getPath(), "remove_at", getPolygonCoords);
-      google.maps.event.addListener(bermudaTriangle.getPath(), "set_at", getPolygonCoords);
-
-   }
-
-   function getPolygonCoords() {
-      var len = bermudaTriangle.getPath().getLength();
-
-      var htmlStr = "";
-      $scope.coordenadas = [];
-      for (var i = 0; i < len; i++) {
-         $scope.coordenadas.push(bermudaTriangle.getPath().getAt(i).toUrlValue(5));
-         htmlStr += bermudaTriangle.getPath().getAt(i).toUrlValue(5) + "<br>";
-      }
-
-      document.getElementById('info').innerHTML = htmlStr;
-   }
-
-   $scope.deshabilitar = function(){
-
-      $('#modal_confirm_deshabilitar').modal('hide');
-
-      Ventana_modal.loader('Cargando imagen');
-
-      $http.get('api/registros/deshabilitar/'+$scope.provider.id).success(function (response){
-
-         Ventana_modal.loader();
-
-         if(response.codigo==400){
-            Ventana_modal.modalResponse(response.mensaje, 'error');
-         }else{
-            $scope.getRegistros($scope.estado_docu);
-         }
-      });
-
-   }
-
-   $scope.habilitar = function(){
-
-      $('#modal_confirm_habilitar').modal('hide');
-
-      Ventana_modal.loader('Cargando imagen');
-
-      $http.get('api/registros/habilitar/'+$scope.provider.id).success(function (response){
-
-         Ventana_modal.loader();
-
-         if(response.codigo==400){
-            Ventana_modal.modalResponse(response.mensaje, 'error');
-         }else{
-            $scope.getRegistros($scope.estado_docu);
-         }
-      });
-
-   }
-
-
-   $scope.generatePDF_detail = function(){
-
-      Ventana_modal.loader('Generando pdf . . .');
-
-      $scope.responseComision.provider = $scope.provider;
-      $scope.responseComision.datos    = $scope.datos;
-
-      $http({
-         method: 'POST',
-         url: 'api/registros/generatePDF_detail',
-         data: $scope.responseComision,
-         responseType: 'arraybuffer',
-      }).success(function (data) {
-
-         Ventana_modal.loader();
-
-         var blob = new Blob([data], {type: "attachment/pdf"});
-         saveAs(blob, "reporte.pdf");
-
-      }).error(function (data) {
-         Ventana_modal.loader();
-      });
-
-   }
-
-
-   $scope.dowloadProducts = function(){
-
-      Ventana_modal.loader('Descargando productos . . .');
-
-      $http({
-         method: 'POST',
-         url: 'api/registros/product/exportExcel',
-         data: $scope.productos,
-         responseType: 'arraybuffer',
-      }).success(function (data) {
-
-         Ventana_modal.loader();
-
-         var blob = new Blob([data], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
-         saveAs(blob, "products.xls");
-
-      }).error(function (data, status, headers, config) {
-         Ventana_modal.loader();
-
-         $timeout(function () {
-            Ventana_modal.modalResponse('Ocurrio un error al descargar', 'error');
-         }, 2000);
-      });
-   }
-
-   /******************************** CARGA MASIVA DE PRODUCTOS ********************************/
-      $scope.read = function (workbook){
-
-         $scope.valido = $scope.validarArchivo();
-
-         if(!$scope.valido){
-
-            $timeout(function(){
-               Ventana_modal.modalResponse($scope.mierror, 'error');
-               $scope.datosExcel = [];
-            },1000);
-
-            return 0;
-         }
-
-         $scope.headerNames = XLSX.utils.sheet_to_json( workbook.Sheets[workbook.SheetNames[0]], { header: 1 })[0];
-         $scope.dataExcel = XLSX.utils.sheet_to_json( workbook.Sheets[workbook.SheetNames[0]]);
-
-         $scope.cargaExcel();
-      }
-
-      $scope.cargaExcel = function () {
-
-         //validacion de encabezados del excel
-         var titulos = new Array('sku','nombre','comision');
-         var existe = true;
-
-         for(var i = 0; i < $scope.headerNames.length; i++) {
-            if (!titulos.includes($scope.headerNames[i])) {
-               existe = false;
-               break;
-            }
-         }
-
-         if(!existe){
-
-            $timeout(function(){
-               $scope.mierror = "El archivo no tiene las columnas correctas, descargue la plantilla.";
-               Ventana_modal.modalResponse($scope.mierror, 'error');
-            },1000);
-
-            return 0;
-         }
-
-         $timeout(function(){
-            $scope.resultadoProductos = [];
-            Ventana_modal.loader('Cargando datos . . .');
-         },50);
-
-         if($scope.dataExcel[0].sku=='sku'){
-            $scope.dataExcel.shift();
-         }
-
-         $timeout(function(){
-            Ventana_modal.loader();
-            $scope.updateComision();
-         },100);
-
-      }
-
-      $scope.validarArchivo = function(){
-
-         $scope.nombreArchivo = document.getElementById("excel").value;
-         var extensiones_permitidas = new Array(".xls", ".xlsx");
-
-         $scope.mierror = "";
-         extension = ($scope.nombreArchivo.substring($scope.nombreArchivo.lastIndexOf("."))).toLowerCase();
-
-         permitida = false;
-
-         for (var i = 0; i < extensiones_permitidas.length; i++) {
-            if (extensiones_permitidas[i] == extension) {
-               permitida = true;
-               break;
-            }
-         }
-
-         if(!permitida){
-            $scope.mierror = "Sólo se pueden subir archivos con extensiones: " + extensiones_permitidas.join();
-            return false;
-         }else{
-            return true;
-         }
-
-      }
-
-   /******************************** CARGA DE PRODUCTOS ********************************/
-
-   $scope.updateComision = function(){
-
-      Ventana_modal.loader('Actualizando . . .');
-
-      $http.post('api/registros/product/updateComision/'+$scope.provider.id, $scope.dataExcel).success(function (response){
-
-         Ventana_modal.loader();
-
-         if(response.codigo==400){
-            Ventana_modal.modalResponse(response.message_error, 'error');
-         }else{
-            Ventana_modal.modalResponse('Actualizado', 'success');
-            $scope.nombreArchivo = "";
-            $scope.productos = response.datos;
-         }
-
-      });
-
-   }
 
    //cierra modal de respuesta !importante
    $scope.cerrar = function(){
@@ -2229,20 +1424,11 @@ function ProviderCtrl($scope, $http, Helper,Ventana_modal, $timeout){
 
    $scope.init = function(){
 
-      var hoy = new Date();
-
-      $scope.imagen        = {};
-      $scope.filtro        = {};
-      $scope.filtro.activo = 1;
-      $scope.filtro.estado_promo = 'Activo';
-
-      $scope.comision      = {};
-      $scope.datos         = {};
-      $scope.datos.mes     = hoy.getMonth()+1;
-      $scope.datos.year    = hoy.getFullYear();
-      $scope.estado_docu   = '10';
-      $scope.getRegistros($scope.estado_docu);
-      // $scope.mas_obj = true;
+      $scope.filtro = {};
+      $scope.queja = {};
+      $scope.getRegistros();
+      $scope.getDepartamentos();
+      $scope.getRegion();
    }
    $scope.init();
 
@@ -2518,112 +1704,6 @@ function InventarioCtrl($scope, $http, Helper, Ventana_modal,codigosError){
       $scope.salida = {};
       $scope.select = {};
       $scope.getInventario();
-   } 
-   
-   $scope.initializer();
-};
-
-app.controller('VentaCtrl', VentaCtrl);
-VentaCtrl.$inject = ['$scope', '$http','Helper', 'Ventana_modal', 'codigosError'];
-
-function VentaCtrl($scope, $http, Helper, Ventana_modal,codigosError){
-
-   $scope.nueva_ventana = function(tipo, data = false){
-      
-      $scope.modal_option = false;
-
-      if(tipo=='VENTA'){ 
-         $scope.modal_venta = true;
-      }else if(tipo=='ENTRADA'){
-       
-      } 
-
-   }
- 
-  
-
-   $scope.salePOS = function(){
-
-      Ventana_modal.loader('Registrando . . .');
-
-      $http.post('api/venta/POS', $scope.venta).success(function(response){
-         Ventana_modal.loader();
-         $scope.modal_venta = false;
-
-         if(response.codigo==400){
-            Ventana_modal.modalResponse(response.error_message, 'error');
-         }else{
-            $scope.venta = {};
-            Ventana_modal.modalResponse(response.message, 'success');
-            $scope.getVentas();
-         }
-
-      });
- 
-   }
-
-   $scope.getVentas = function(){
-
-      $http.post('api/venta/getVentas',$scope.filtro).success(function(response){       
-         $scope.ventas = response.ventas;
-         
-         $scope.filtro_obj = false;
-      });
- 
-   }
-
-   $scope.getAgencia = function () {
-      Ventana_modal.loader('Cargando . . .');
-      $http.get('api/transactions/getAgencia').success(function(response){ 
-         Ventana_modal.loader();
-         $scope.agencias = response.agencias;
-
-      });
-   }
-
-   $scope.abrirFiltro = function(){
-      $scope.filtro_obj = true;
-   }
-   
-   $scope.cerrarFiltro = function(){ 
-      $scope.pfecha = false;
-      $scope.p_agencia = false; 
-      $scope.filtro_obj = false;
-   }
-   
-
-   $scope.actiFi = function(filtro){
-
-      if(filtro==1){
-         $scope.pfecha=true;
-      }else if(filtro==4){
-         $scope.p_agencia=true;
-         $scope.getAgencia();
-      }
-   }
-
-   $scope.canFiltro = function(filtro){
-
-      if(filtro==1){
-         $scope.pfecha=false;
-         $scope.filtro.fecha_inicio=null;
-         $scope.filtro.fecha_fin=null;
-      }else if(filtro==4){
-         $scope.p_agencia=false;
-         $scope.filtro.agencia=null;
-      } 
-   }
-
-
-   //cierra modal de respuesta !importante
-   $scope.cerrar = function(){
-      Ventana_modal.cerrar();
-   }
- 
-   $scope.initializer = function(){ 
-      $scope.venta = {};
-      $scope.filtro = {};
-      $scope.getVentas();
    } 
    
    $scope.initializer();
@@ -3053,3 +2133,76 @@ function GlobalChart(){
    };
 
 };
+
+app.controller('WelcomeCtrl', WelcomeCtrl);
+WelcomeCtrl.$inject = ['$scope', '$http', '$location','$window','Helper', 'Ventana_modal'];
+
+function WelcomeCtrl($scope, $http, $location, $window ,Helper,Ventana_modal){
+
+   $scope.getDepartamentos = function(){
+      $http.get('public/getDepartamentos/'+0).success(function(response){
+         $scope.departamentos = response.datos;
+      });
+   };
+
+   $scope.getMunicipio = function(){
+      $http.get('public/getMunicipio/'+$scope.queja.departamento).success(function(response){
+         $scope.municipios = response.datos;
+      });
+   };
+
+
+   $scope.sendAnonima = function(){
+      $scope.queja.anonima = !$scope.queja.anonima;
+   }
+
+   $scope.sendQueja = function(){
+
+      Ventana_modal.loader('Enviando . . .');
+
+      $http.post('public/sendqueja',$scope.queja).success(function(response){
+
+         Ventana_modal.loader();
+
+         if(response.codigo==200){
+            $scope.queja ={};
+            Ventana_modal.modalResponse(response.message, 'success');
+         }else{
+            Ventana_modal.modalResponse(response.error_message, 'error');
+         }
+
+      });
+   }
+
+   $scope.buscarQueja = function(){
+
+      Ventana_modal.loader('buscando . . .');
+
+      $http.post('public/buscarQueja',$scope.queja).success(function(response){
+
+         Ventana_modal.loader();
+
+         if(response.codigo==200){
+           $scope.modal_queja = true;
+           $scope.detail = response.queja;
+         }else{
+            Ventana_modal.modalResponse(response.error_message, 'error');
+         }
+
+      });
+   }
+
+   //cierra modal de respuesta !importante
+   $scope.cerrar = function(){
+      Ventana_modal.cerrar();
+   }
+
+   $scope.inicialize = function(){
+      $scope.getDepartamentos();
+      $scope.queja = {};
+      $scope.queja.anonima = true;
+   }
+
+   $scope.inicialize();
+};
+
