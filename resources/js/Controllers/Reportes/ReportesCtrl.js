@@ -235,6 +235,72 @@ function ReportesCtrl($scope, $http, $location, $window ,Helper,Ventana_modal,$t
       });
    }
 
+   $scope.graphicsTopSucurrales = function(data){
+
+      console.log(data);
+      Highcharts.chart('container_top_sucursal', {
+         chart: {
+             type: 'bar'
+         },
+         title: {
+             text: ''
+         },
+         subtitle: {
+             text: ''
+         },
+         xAxis: {
+             categories: data.sucursales,
+             allowDecimals: true,
+             title: {
+                 text: null
+             }
+         },
+         yAxis: {
+             min: 0,
+             title: {
+                 text: 'Valor',
+                 align: 'high'
+             },
+             labels: {
+                 overflow: 'justify'
+             }
+         },
+         tooltip: {
+             valueSuffix: ''
+         },
+         plotOptions: {
+            series: {
+               colorByPoint: false
+            },
+            bar: {
+               dataLabels: {
+                  enabled: false
+               }
+            }
+         },
+         legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor:
+               Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+            shadow: true
+         },
+         credits: {
+             enabled: false
+         },
+         series: [{
+            name: '',
+            data: data.quejas
+         }]
+      });
+   }
+
+
 
    $scope.graphicsOrderRange = function(data){
 
@@ -365,6 +431,7 @@ function ReportesCtrl($scope, $http, $location, $window ,Helper,Ventana_modal,$t
 
             $scope.dataReport = response;
             $scope.graphicsTopComercios($scope.dataReport.top_comercios);
+            $scope.graphicsTopSucurrales($scope.dataReport.top_sucursales);
             $scope.graphicsRegiones($scope.dataReport.regiones);
             $scope.graphicsDepartamentos($scope.dataReport.departamentos);
             $scope.graphicsMunicipios($scope.dataReport.municipios);

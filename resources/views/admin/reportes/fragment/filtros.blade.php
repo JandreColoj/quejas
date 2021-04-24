@@ -4,7 +4,7 @@
          <div class="container_filtro">
             <form ng-submit="generateReportGeneral()">
                <div class="row">
-                  <div class="col-sm-4">
+                  <div class="col-sm-2">
                      <label for="">Buscar por</label>
                      <input class="form-control" type="text"  ng-model="filtro.busqueda" placeholder="Comercio">
                   </div>
@@ -49,7 +49,7 @@
 
                   </div>
 
-                  {{-- <div class="col-sm-2 spi">
+                  <div class="col-sm-2 spi">
                      <label>Fecha inicio</label>
                      <input class="form-control" type="date" placeholder="Fecha Inicio" ng-model="filtro.fechaInicio">
                   </div>
@@ -57,9 +57,9 @@
                   <div class="col-sm-2 spi">
                      <label>Fecha final</label>
                      <input class="form-control" type="date" placeholder="Fecha Final" ng-model="filtro.fechaFinal">
-                  </div> --}}
+                  </div>
 
-                  <div class="col-sm-1 spi">
+                  <div class="col-sm-1">
                      <input class="btn-busfiltro" type="submit">
                   </div>
                </div>

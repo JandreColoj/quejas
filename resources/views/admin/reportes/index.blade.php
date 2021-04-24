@@ -50,6 +50,66 @@
                         </div>
                      </div>
 
+                     <div class="ed-item m-40 s-100 ">
+                        <div class="base_charts">
+                           <div class="head_box__reports">
+                              <div class="ed-container full">
+                                 <div class="ed-item s-85">
+                                    <p style="font-weight: 600; padding-top: 10px;">Comercios sin quejas</p>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <div class="body_box__reports">
+
+                              <table class="table">
+                                 <thead class="thead-dark">
+                                   <tr>
+                                     <th scope="col">No.</th>
+                                     <th scope="col">nombre</th>
+                                   </tr>
+                                 </thead>
+                                 <tbody>
+                                   <tr ng-repeat="comercio in dataReport.notComercios">
+                                     <th scope="row">1</th>
+                                     <td>@{{comercio.nombre}}</td>
+                                   </tr>
+                                 </tbody>
+                               </table>
+                           </div>
+                        </div>
+                     </div>
+
+
+
+                  </div>
+               </div>
+
+               {{-- SUCURSAL --}}
+               <div class="boxdata_container">
+                  <div class="ed-container full" >
+
+                     <div class="ed-item m-60 s-100 ">
+                        <div class="base_charts">
+                           <div class="head_box__reports">
+                              <div class="ed-container full">
+                                 <div class="ed-item s-85">
+                                    <p style="font-weight: 600; padding-top: 10px;">Quejas por SUCURSAL</p>
+                                 </div>
+
+                                 {{-- <div class="ed-item s-15 spi spd">
+                                    <div class="report_ico_excel" style="background-size: 25px;" ng-click="exportExcel('topProviders')" style="cursor:pointer"> </div>
+                                 </div> --}}
+                              </div>
+                           </div>
+
+                           <div class="body_box__reports">
+                              <div class="content_chart" id="container_top_sucursal">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
                      <div class="ed-item m-40 s-100">
                         <div class="base_charts">
                            <div class="head_box__reports">
@@ -73,6 +133,7 @@
 
                   </div>
                </div>
+
 
                {{-- DEPTOS Y MUNICIPIOS --}}
                <div class="boxdata_container">

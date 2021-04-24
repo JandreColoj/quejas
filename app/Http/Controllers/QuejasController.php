@@ -117,6 +117,9 @@ class QuejasController extends Controller{
       $region       = isset($request->region)  ? true : false;
       $departamento = isset($request->departamento)   ? true : false;
       $municipio    = isset($request->municipio)   ? true : false;
+      $date_start   = $request->has('fechaInicio') ? Carbon::parse($request->fechaInicio)->startOfDay() : Carbon::now()->subWeek(10)->startOfDay();
+      $date_end     = $request->has('fechaFinal') ? Carbon::parse($request->fechaFinal)->startOfDay() : Carbon::now()->endOfDay();
+
 
       $comercios = comercio::where(function($query) use ($request){
          $query->where('nombre',  'LIKE',  '%'.$request->busqueda.'%');
@@ -146,6 +149,7 @@ class QuejasController extends Controller{
 
       $quejas = quejas::with('comercio', 'sucursal','consumidor')
                         ->whereIn('id_comercio', $comercios)
+                        ->whereBetween('fecha', [$date_start, $date_end])
                         ->when($fitro_sucursal, function($query) use ($sucursal){
 
                            return $query->whereIn('id_sucursal', $sucursal);
@@ -184,6 +188,8 @@ class QuejasController extends Controller{
       $region       = isset($request->region)  ? true : false;
       $departamento = isset($request->departamento)   ? true : false;
       $municipio    = isset($request->municipio)   ? true : false;
+      $date_start   = $request->has('fechaInicio') ? Carbon::parse($request->fechaInicio)->startOfDay() : Carbon::now()->subWeek(10)->startOfDay();
+      $date_end     = $request->has('fechaFinal') ? Carbon::parse($request->fechaFinal)->startOfDay() : Carbon::now()->endOfDay();
 
       $comercios = comercio::where(function($query) use ($request){
          $query->where('nombre',  'LIKE',  '%'.$request->busqueda.'%');
@@ -213,18 +219,30 @@ class QuejasController extends Controller{
 
       $quejas = quejas::with('comercio', 'sucursal','consumidor')
                         ->whereIn('id_comercio', $comercios)
+                        ->whereBetween('fecha', [$date_start, $date_end])
                         ->when($fitro_sucursal, function($query) use ($sucursal){
 
                            return $query->whereIn('id_sucursal', $sucursal);
 
                         })->get();
 
+      $id_comercios = $quejas->pluck('id_comercio');
+
+      $comercios = comercio::whereNotIn('id', $id_comercios)->get();
 
 
       /************ TOP COMERCIOS ************/
          $top_comercios = $quejas->groupBy('comercio.nombre')->transform(function ($values, $key){
             return [
                'name'  => $key,
+               'total' =>  $values->count('id'),
+            ];
+         });
+
+      /************ TOP sucursal ************/
+         $top_sucursales = $quejas->groupBy('sucursal.direccion')->transform(function ($values, $key){
+            return [
+               'name'  => $values[0]->comercio->nombre. ' - '.$key,
                'total' =>  $values->count('id'),
             ];
          });
@@ -269,6 +287,10 @@ class QuejasController extends Controller{
             'comercios' => $top_comercios->pluck('name'),
             'quejas'    => $top_comercios->pluck('total'),
          ],
+         'top_sucursales' =>  [
+            'sucursales' => $top_sucursales->pluck('name'),
+            'quejas'    => $top_sucursales->pluck('total'),
+         ],
          'regiones'      => $regiones->values(),
          'departamentos' => $departamentos->values(),
          'municipios'    => $municipios->values(),
@@ -279,7 +301,8 @@ class QuejasController extends Controller{
          ],
          'total_quejas'  => $quejas->count('id'),
 
-         'queja'         => $quejas
+         'queja'         => $quejas,
+         'notComercios'  => $comercios
       ];
 
       return response()->json($response);
