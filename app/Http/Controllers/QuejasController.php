@@ -210,10 +210,12 @@ class QuejasController extends Controller{
       }
 
       if (isset($municipios)) {
-         $sucursal = sucursal::whereIn('id_comercio', $comercios)->whereIn('id_municipio', $municipios)->pluck('id');
+         $sucursal = sucursal::whereIn('id_comercio', $comercios)->whereIn('id_municipio', $municipios)->get();
+         $id_sucursales = $sucursal->pluck('id_comercio');
          $fitro_sucursal= true;
       }else{
          $sucursal = [];
+         $id_sucursales = [];
          $fitro_sucursal= false;
       }
 
@@ -222,15 +224,15 @@ class QuejasController extends Controller{
                         ->whereBetween('fecha', [$date_start, $date_end])
                         ->when($fitro_sucursal, function($query) use ($sucursal){
 
-                           return $query->whereIn('id_sucursal', $sucursal);
+                           return $query->whereIn('id_sucursal', $sucursal->pluck('id'));
 
                         })->get();
 
       $id_comercios = $quejas->pluck('id_comercio');
 
-      $comercios = comercio::whereNotIn('id', $id_comercios)->get();
+      $comercios = comercio::whereNotIn('id', $id_comercios)->whereIn('id',  $id_sucursales)->get();
 
-
+                         
       /************ TOP COMERCIOS ************/
          $top_comercios = $quejas->groupBy('comercio.nombre')->transform(function ($values, $key){
             return [
