@@ -117,7 +117,7 @@ class QuejasController extends Controller{
       $region       = isset($request->region)  ? true : false;
       $departamento = isset($request->departamento)   ? true : false;
       $municipio    = isset($request->municipio)   ? true : false;
-      $date_start   = $request->has('fechaInicio') ? Carbon::parse($request->fechaInicio)->startOfDay() : Carbon::now()->subWeek(10)->startOfDay();
+      $date_start   = $request->has('fechaInicio') ? Carbon::parse($request->fechaInicio)->startOfDay() : Carbon::now()->subWeek(100)->startOfDay();
       $date_end     = $request->has('fechaFinal') ? Carbon::parse($request->fechaFinal)->startOfDay() : Carbon::now()->endOfDay();
 
 
@@ -188,7 +188,7 @@ class QuejasController extends Controller{
       $region       = isset($request->region)  ? true : false;
       $departamento = isset($request->departamento)   ? true : false;
       $municipio    = isset($request->municipio)   ? true : false;
-      $date_start   = $request->has('fechaInicio') ? Carbon::parse($request->fechaInicio)->startOfDay() : Carbon::now()->subWeek(10)->startOfDay();
+      $date_start   = $request->has('fechaInicio') ? Carbon::parse($request->fechaInicio)->startOfDay() : Carbon::now()->subWeek(100)->startOfDay();
       $date_end     = $request->has('fechaFinal') ? Carbon::parse($request->fechaFinal)->startOfDay() : Carbon::now()->endOfDay();
 
       $comercios = comercio::where(function($query) use ($request){
