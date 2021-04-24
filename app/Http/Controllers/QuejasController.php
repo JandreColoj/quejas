@@ -232,7 +232,7 @@ class QuejasController extends Controller{
 
       $comercios = comercio::whereNotIn('id', $id_comercios)->whereIn('id',  $id_sucursales)->get();
 
-                         
+
       /************ TOP COMERCIOS ************/
          $top_comercios = $quejas->groupBy('comercio.nombre')->transform(function ($values, $key){
             return [

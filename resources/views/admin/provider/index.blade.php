@@ -31,9 +31,11 @@
                         <thead>
                            <th></th>
                            <th class="title_table">Fecha</th>
-                           <th class="title_table">Comercio</th>
                            <th class="title_table">NIT</th>
-                           <th class="title_table">Direccion</th>
+                           <th class="title_table">Comercio</th>
+                           <th class="title_table">Region</th>
+                           <th class="title_table">Departamento</th>
+                           <th class="title_table">Municipio</th>
                            <th class="title_table">Detalle</th>
                         </thead>
 
@@ -41,10 +43,12 @@
                            <tr ng-repeat="registro in registros"  >
                               <td class="tdac"></td>
                               <td class="body_table">@{{registro.fecha | date:'MM/dd/yyyy'}}</td>
-                              <td class="body_table conbo"> @{{registro.comercio.nombre | limitTo:30}}  </td>
                               <td class="body_table"> @{{registro.comercio.nit}}</td>
+                              <td class="body_table conbo"> @{{registro.comercio.nombre | limitTo:30}}  </td>
 
-                              <td class="body_table conbo" >@{{registro.sucursal.direccion}} </td>
+                              <td class="body_table conbo" >@{{registro.sucursal.ubicacion.departamento.region}} </td>
+                              <td class="body_table conbo" >@{{registro.sucursal.ubicacion.departamento.nombre}} </td>
+                              <td class="body_table conbo" >@{{registro.sucursal.ubicacion.nombre}} </td>
                               <td class="radius_right">
                                  <span class="ico_visto icotfaq" uib-tooltip="Ver" ng-click="verQUeja(registro)"></span>
                               </td>
